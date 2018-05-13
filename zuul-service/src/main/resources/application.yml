@@ -1,0 +1,32 @@
+zuul:
+  #Service will be mapped under the /api URI
+  prefix: /api
+  routes:
+    jpt:
+      path: /server/**
+      url: http://localhost:9988
+      #serviceId:  eureka-server
+    eureka-client:
+      path: /client/**
+      url: http://localhost:9977
+      #serviceId: eureka-client
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka
+
+server:
+  port: 9966
+
+spring:
+  application:
+    name: zuul-service
+    
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
